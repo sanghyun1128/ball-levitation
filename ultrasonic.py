@@ -17,7 +17,7 @@ class Ultrasonic:
 
         GPIO.output(self.trigPinNum, 1)
         time.sleep(0.00001)
-        GPIO.output(TRIG, 0)
+        GPIO.output(self.trigPinNum, 0)
 
         while GPIO.input(self.echoPinNum) == 0:
             a = 0

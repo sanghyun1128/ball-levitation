@@ -1,5 +1,7 @@
 from fan import Fan
 from ultrasonic import Ultrasonic
+import RPi.GPIO as GPIO
+GPIO.cleanup()
 
 fan = Fan(23)
 ultrasonic = Ultrasonic(17, 18)
