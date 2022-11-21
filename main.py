@@ -18,11 +18,14 @@ try:
     while(1):
         fan.pwmOnFan10ms()
         distance = ultrasonic.getDistance()
+        print("Distance : " + str(distance) + " / " + "Speed : " + str(currentSpeed))
         if (distance < desireDistance):
-            currentSpeed -= 5
+            if currentSpeed >= 5:
+                currentSpeed -= 5
             fan.setFanSpeed(currentSpeed)
         else :
-            currentSpeed += 5
+            if currentSpeed <= 95:
+                currentSpeed += 5
             fan.setFanSpeed(currentSpeed)
 except KeyboardInterrupt:
     fan.destory()
