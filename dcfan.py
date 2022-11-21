@@ -13,14 +13,13 @@ class Fan:
     def setFanSpeed(self, fanSpeed):
         self.fanSpeed = fanSpeed
         
-    def startFan(self):
-        while(True):
-            for i in range(self.fanSpeed):
-                GPIO.output(self.fanPinNum, True)
-                time.sleep(0.01)
-            for j in range(100-self.fanSpeed):
-                GPIO.output(self.fanPinNum, False)
-                time.sleep(0.01)
+    def pwmOnFan10ms(self):
+        for i in range(self.fanSpeed):
+            GPIO.output(self.fanPinNum, True)
+            time.sleep(0.0001)
+        for j in range(100-self.fanSpeed):
+            GPIO.output(self.fanPinNum, False)
+            time.sleep(0.0001)
                 
     def destory():
         GPIO.cleanup()
