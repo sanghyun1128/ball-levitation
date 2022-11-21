@@ -8,6 +8,7 @@ class Fan:
         
     def setup(self):
         GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
         GPIO.setup(self.fanPinNum, GPIO.OUT)
         
     def setFanSpeed(self, fanSpeed):
@@ -21,5 +22,5 @@ class Fan:
             GPIO.output(self.fanPinNum, False)
             time.sleep(0.0001)
                 
-    def destory():
+    def destory(self):
         GPIO.cleanup()

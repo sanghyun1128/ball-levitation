@@ -8,6 +8,7 @@ class Ultrasonic:
         
     def setup(self):
         GPIO.setmode(GPIO.BCM)
+        GPIO.setwarnings(False)
         GPIO.setup(self.trigPinNum, GPIO.OUT)
         GPIO.setup(self.echoPinNum, GPIO.IN)
         
@@ -29,6 +30,5 @@ class Ultrasonic:
         during = time2 - time1
         return during * 340 / 2 * 100
     
-    def destroy():
+    def destroy(self):
         GPIO.cleanup()
-
