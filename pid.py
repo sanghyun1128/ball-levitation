@@ -36,8 +36,5 @@ class PID_Control:
             result = self.min
  
         self.pre_error = error
- 
-        #description
-        #desc = f'Kp :\t{kp:.3f}\nKi :\t{ki:.3f}\nKd :\t{kd:.3f}\nPv :\t{pv:.3f}\nSv :\t{sv:.3f}'
- 
+
         return result

@@ -13,6 +13,7 @@ class Fan:
         
     def getSpeed(self):
         return self.fanSpeed
+    
     def setFanSpeed(self, fanSpeed):
         self.fanSpeed = int(fanSpeed)
     
@@ -26,7 +27,7 @@ class Fan:
         if self.fanSpeed < 0:
             self.fanSpeed = 0
         
-    def pwmOnFan100ms(self):
+    def pwmOn100ms(self):
         GPIO.output(self.fanPinNum, True)
         for i in range(self.fanSpeed):
             time.sleep(0.001)
