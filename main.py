@@ -5,21 +5,26 @@ import RPi.GPIO as GPIO
 GPIO.cleanup()
 
 fan = Fan(23)
-ultrasonic = Ultrasonic(17, 18)
+ultrasonicForPid = Ultrasonic(17, 18)
+ultrasonicForDistance = Ultrasonic(20, 21)
 pid = PID_Control(0.1, 0, 100, 1, 1, 1)
 
 fan.setup()
-ultrasonic.setup()
+ultrasonicForDistance.setup()
+ultrasonicForPid.setup()
 
 desireDistance = 20
 
-prevErr = 20
 try:
     while(1):
-        currdistance = ultrasonic.getDistance()
-        fan.setFanSpeed(pid.calc(currdistance, desireDistance))
+        currdistance = ultrasonicForPid.getDistance()
+        desireDistance = ultrasonicForDistance.getDistance()
+        speed = pid.calc(currdistance, desireDistance)
+        fan.setFanSpeed(speed)
+        print("Desire : " + str(desireDistance))
         print("Distance : " + str(currdistance) + " / " + "Speed : " + str(fan.getSpeed()))
         fan.pwmOnFan100ms()
 except KeyboardInterrupt:
     fan.destory()
-    ultrasonic.destroy()
+    ultrasonicForPid.destroy()
+    ultrasonicForDistance.destroy()
