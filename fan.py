@@ -14,7 +14,7 @@ class Fan:
     def getSpeed(self):
         return self.fanSpeed
     def setFanSpeed(self, fanSpeed):
-        self.fanSpeed = fanSpeed
+        self.fanSpeed = int(fanSpeed)
     
     def addFanSpeed(self, num):
         self.fanSpeed += num
