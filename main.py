@@ -13,12 +13,14 @@ fan.setup()
 ultrasonicForDistance.setup()
 ultrasonicForPid.setup()
 
-desireDistance = 20
+desireDistance = 25
 
 try:
     while(1):
         currdistance = ultrasonicForPid.getDistance()
-        desireDistance = ultrasonicForDistance.getDistance()
+        desireDistance = 50 - ultrasonicForDistance.getDistance()
+        if desireDistance < 0:
+            desireDistance = 25
         speed = pid.calc(currdistance, desireDistance)
         fan.setFanSpeed(speed)
         print("Desire : " + str(desireDistance))
